@@ -45,7 +45,7 @@ To create your development environment [follow these instructions](https://larav
 
 Setting up your development environment on your local machine:
 ```bash
-$ git clone https://github.com/guillaumebriday/laravel-blog.git
+$ git clone https://github.com/DEVSAGE1111/_Assesment.git
 $ cd laravel-blog
 $ cp .env.example .env
 $ php artisan key:generate
