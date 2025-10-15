@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Branding Image -->
         <a href="{{ route('home') }}" class="navbar-brand">
-            {{ config('app.name', 'Laravel') }}
+            Contributor
         </a>
 
         <!-- Collapsed Hamburger -->

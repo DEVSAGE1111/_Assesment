@@ -78,6 +78,13 @@ class User extends Authenticatable
         });
     }
 
+     public function scopeAuthorsSelf(Builder $query): Builder
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('roles.name', Role::ROLE_EDITOR);
+        });
+    }
+
     /**
      * Check if the user can be an author
      */

@@ -27,7 +27,7 @@
                 <td><span class="badge rounded-pill bg-secondary">{{ $post->comments_count }}</span></td>
                 <td><span class="badge rounded-pill bg-secondary">{{ $post->likes_count }}</span></td>
                 <td>
-                    <a href="{{ route('userposts.edit', $post) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('userposts.edit', $post->id) }}" class="btn btn-primary btn-sm">
                         <x-icon name="edit" />
                     </a>
 

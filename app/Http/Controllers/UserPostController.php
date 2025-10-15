@@ -19,8 +19,10 @@ class UserPostController extends Controller
      */
     public function index(): View
     {
-        dd(auth()->user()->id);
-        $posts=Post::where('author_id',auth()->user()->id)->withCount('comments', 'likes')->with('author')->get();
+        // dd(auth()->user()->id);
+        $posts= Post::where('author_id',auth()->user()->id)->withCount('comments', 'likes')->with('author')->latest()->paginate(50);
+
+        // dd($posts);
         return view('contributor.posts.index', [
             'posts' =>$posts
         ]);
@@ -33,11 +35,12 @@ class UserPostController extends Controller
     /**
      * Display the specified resource edit form.
      */
-    public function edit(Post $post): View
+    public function edit($id): View
     {
+        $post=Post::find($id);
         return view('contributor.posts.edit', [
             'post' => $post,
-            'users' => User::authors()->pluck('name', 'id'),
+            'users' => User::AuthorsSelf()->pluck('name', 'id'),
             'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
@@ -48,7 +51,7 @@ class UserPostController extends Controller
     public function create(Request $request): View
     {
         return view('contributor.posts.create', [
-            'users' => User::authors()->pluck('name', 'id'),
+            'users' => User::AuthorsSelf()->pluck('name', 'id'),
             'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
@@ -66,11 +69,12 @@ class UserPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostsRequest $request, Post $post): RedirectResponse
+    public function update(PostsRequest $request, $id): RedirectResponse
     {
+        $post=Post::find($id);
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
-        return redirect()->route('posts.edit', $post)->withSuccess(__('posts.updated'));
+        return redirect()->route('userposts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
     /**
