@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentsRequest;
 use App\Models\Comment;
 use HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
+class UserCommentController extends Controller
 {
     /**
      * Store a newly created resource in storage.

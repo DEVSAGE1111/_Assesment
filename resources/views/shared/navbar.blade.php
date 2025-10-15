@@ -19,7 +19,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            {{-- @admin --}}
+            @admin
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="{{ route('admin.dashboard') }}" class="nav-link">
@@ -27,7 +27,18 @@
                         </a>
                     </li>
                 </ul>
-            {{-- @endadmin --}}
+            @endadmin
+
+            @if(Auth::user()&& auth()->user()->role!='Admin')
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link">
+                            @lang('dashboard.dashboard')
+                        </a>
+                    </li>
+                </ul>
+            @endif
 
             <ul class="navbar-nav ms-auto">
                 @guest
